@@ -14,16 +14,16 @@ import scala.collection.mutable.HashMap
  */
 
 object SensorActor {
-  def props()(implicit materializer: Materializer) = Props(new SensorActor())
+  def props()= Props(new SensorActor())
 }
 
-class SensorActor(implicit materializer: Materializer) extends Actor {
+class SensorActor extends Actor {
   /** *
    * Here we are using mutable Hashmap. Hashmap is non synchronized.
    * This is not an issue for concurrency.
    * Actor is handling status with concurrently.
    */
-  val sensorMap = HashMap[String, SensorRecordDetail]()
+  private val sensorMap = HashMap[String, SensorRecordDetail]()
 
 
   override def receive: Receive = {
